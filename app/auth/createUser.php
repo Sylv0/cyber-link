@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require __DIR__.'/../autoload.php'; 
+require __DIR__.'/../autoload.php';
 
 if(isset($_POST['username']) && isset($_POST['password'])) {
 
@@ -11,4 +11,5 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
   $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
 
   $statement = $pdo->query("INSERT INTO 'user'(name, password, email) VALUES ('$user', '$password', '$email')");
+  redirect('../../login.php');
 }
