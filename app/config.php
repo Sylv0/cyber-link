@@ -6,5 +6,5 @@ declare(strict_types=1);
 
 return [
     'title' => 'Cyber-Link',
-    'database_path' => sprintf('sqlite:%s/database/database.db', __DIR__),
+    'database_path' => sprintf('sqlite:%s/database/users.db', __DIR__),
 ];
