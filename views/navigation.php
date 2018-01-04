@@ -14,5 +14,9 @@
           <a class="nav-link" href="./login.php">Login</a>
       </li><!-- /nav-item -->
 
+      <li class="nav-item">
+        <a class="nav-link" href="./createUser.php">Register</a>
+      </li><!-- /nav-item -->
+
   </ul><!-- /navbar-nav -->
 </nav><!-- /navbar -->
