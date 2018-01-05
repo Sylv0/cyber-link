@@ -10,8 +10,8 @@ if(isset($_POST['email']) && isset($_POST['password']))
 $email = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
 }
 
-$statement = $pdo->prepare('SELECT * FROM users WHERE email = :email');
-$statement ->bindPAram(':email', $email);
+$statement = $pdo->prepare('SELECT * FROM user WHERE email = :email');
+$statement ->bindParam(':email', $email);
 
 $statement->execute();
 
