@@ -27,3 +27,4 @@ if(password_verify($_POST['password'], $user['password']))
   $_SESSION['user'] = ['id' => $user['id'], 'name' => $user['name'], 'email' => $user['email']];
   redirect('../../index.php');
 }
+var_dump(password_verify($_POST['password'], $user['password']));
