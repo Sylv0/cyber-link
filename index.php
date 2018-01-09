@@ -4,7 +4,9 @@
     <h1><?php echo $config['title']; ?></h1>
     <p>This is the home page.</p>
 </article>
-<?php if(isset($_SESSION['user'])){ ?>
+<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    echo "Welcome " . $_SESSION['user'] . "!";
+ ?>
   <article>
       <h1>Post</h1>
 
@@ -23,5 +25,8 @@
           <button type="submit" class="btn btn-primary">Submit</button>
       </form>
   </article>
-<?php }?>
+<?php }else {
+      echo "Please log in first to see this page.";
+  } ?>
+
 <?php require __DIR__.'/views/footer.php'; ?>
