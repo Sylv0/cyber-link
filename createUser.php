@@ -5,7 +5,6 @@
       <form class="form-signin" action ="app/auth/createUser.php" method="POST">
         <h2 class="form-signin-heading">Please Register</h2>
         <div class="input-group">
-	  <span class="input-group-addon" id="basic-addon1">@</span>
 	  <input type="text" name="username" class="form-control" placeholder="Username" required>
 	</div>
         <label for="inputEmail" class="sr-only">Email address</label>
