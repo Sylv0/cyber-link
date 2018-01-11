@@ -8,7 +8,7 @@ require __DIR__.'/../autoload.php';
 if(isset($_POST['email']) && isset($_POST['password']))
 {
 $email = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
-}
+
 
 $statement = $pdo->prepare('SELECT * FROM user WHERE email = :email');
 $statement ->bindParam(':email', $email);
@@ -24,7 +24,10 @@ if(!$user)
 
 if(password_verify($_POST['password'], $user['password']))
 {
-  $_SESSION['user'] = ['id' => $user['id'], 'name' => $user['name'], 'email' => $user['email']];
+  $_SESSION['userId'] = $user['userId'];
+
+  unset($user['password']);
   redirect('../../index.php');
-  $_SESSION['loggedIn'] = true;
 }
+}
+redirect('/');
