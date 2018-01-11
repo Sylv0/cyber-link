@@ -10,7 +10,7 @@
           <a class="nav-link" href="./about.php">About</a>
       </li><!-- /nav-item -->
       <li class="nav-item">
-        <?php if (!isset($_SESSION['user'])){ ?>
+        <?php if (!isset($_SESSION['userId'])){ ?>
           <a class="nav-link" href="./login.php">Login</a>
         </li>
           <li class="nav-item">
@@ -18,7 +18,7 @@
           </li><!-- /nav-item -->
         <?php } else { ?>
           <a class="nav-link" href="app/auth/logout.php">Log Out</a>
-      
+
     <?php } ?>
 
 
