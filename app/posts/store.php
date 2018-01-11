@@ -6,4 +6,12 @@ require __DIR__.'/../autoload.php';
 
 // In this file we store/insert new posts in the database.
 
-redirect('/');
+if(isset($_POST['title']) && isset($_POST['content']))
+{
+$title = $_POST['title'];
+$content = $_POST['content'];
+$user = $_SESSION['userId'];
+
+$statement = $pdo->query("INSERT INTO 'posts'(title, content, userID) VALUES ('$title', '$content', '$user')");
+redirect('../../index.php');
+}
