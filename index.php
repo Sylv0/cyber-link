@@ -6,7 +6,6 @@
 
 </article>
 <?php if (isset($_SESSION['userId'])) {
-  //$statement = $pdo->query("SELECT name FROM user WHERE userId = '$_SESSION['user']' ");
 
   $statement = $pdo->prepare('SELECT name FROM user WHERE userId = :name');
   $statement ->bindParam(':name', $_SESSION['userId']);
