@@ -25,7 +25,7 @@
       <?php } else { ?>
 
         <li class="nav-item">
-          <a class="nav-link" href="app/posts/store.php">Log out</a>
+          <a class="nav-link" href="app/auth/logout.php">Log out</a>
         </li>
 
         <li class="nav-item">

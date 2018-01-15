@@ -19,7 +19,7 @@ $user = $statement->fetch(PDO::FETCH_ASSOC);
 
 if(!$user)
 {
-  redirect('/../../login.php');
+  redirect('../../login.php');
 }
 
 if(password_verify($_POST['password'], $user['password']))

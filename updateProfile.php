@@ -29,9 +29,19 @@ $bio = $user['bio'];
             </div><!-- /form-group -->
 
             <div class="form-group">
-                <label for="password">Password</label>
-                <input class="form-control" type="password" name="password">
-                <small class="form-text text-muted">Please provide your password (passphrase).</small>
+                <label for="password">Old Password</label>
+                <input class="form-control" type="password" name="Oldpassword">
+                <small class="form-text text-muted">Please provide your old password.</small>
+            </div><!-- /form-group -->
+            <div class="form-group">
+                <label for="password">New Password</label>
+                <input class="form-control" type="password" name="Newpassword">
+                <small class="form-text text-muted">Please provide your new password.</small>
+            </div><!-- /form-group -->
+            <div class="form-group">
+                <label for="password">Repeat new Password</label>
+                <input class="form-control" type="password" name="Repeatpassword">
+                <small class="form-text text-muted">Please provide your password.</small>
             </div><!-- /form-group -->
 
             <div class="form-group">

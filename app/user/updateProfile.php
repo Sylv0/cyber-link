@@ -3,6 +3,11 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
+$getPassword = $pdo->prepare('SELECT * FROM user WHERE userId= :id');
+$getPassword ->bindParam(':id', $_SESSION['userId']);
+$getPassword->execute();
+
+
 if (isset($_FILES['myImage'])) {
 
     $image = $_FILES['myImage']['name'];
@@ -24,9 +29,10 @@ if (isset($_POST['bio']))
 {
   $bio = $_POST['bio'];
 }
-if (isset($_POST['password']))
+if(password_verify($_POST['Oldpassword'], $getPassword->fetch(PDO::FETCH_ASSOC)['password'])&& $_POST['Newpassword'] == $_POST['Repeatpassword'] )
 {
-$password = password_hash(filter_var($_POST['password'], FILTER_SANITIZE_STRING),PASSWORD_DEFAULT);
+  $password = password_hash(filter_var($_POST['Newpassword'], FILTER_SANITIZE_STRING),PASSWORD_DEFAULT);
+
 }
 if (isset($_POST['username']))
 {
@@ -34,16 +40,16 @@ $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 }
 if($username||$password||$bio||$email)
 {
-$statement = $pdo->prepare("UPDATE user SET name= :username, password=:password, email=:email, bio=:bio WHERE userId= :id");
+$updateUser = $pdo->prepare("UPDATE user SET name= :username, password=:password, email=:email, bio=:bio WHERE userId= :id");
 
-$statement ->bindParam(':id', $_SESSION['userId']);
-$statement ->bindParam(':email', $email);
-$statement ->bindParam(':username', $username);
-$statement ->bindParam(':password', $password);
-$statement ->bindParam(':bio', $bio);
+$updateUser ->bindParam(':id', $_SESSION['userId']);
+$updateUser ->bindParam(':email', $email);
+$updateUser ->bindParam(':username', $username);
+$updateUser ->bindParam(':password', $password);
+$updateUser ->bindParam(':bio', $bio);
 
 
-$statement->execute();
+$updateUser->execute();
 redirect('../../updateProfile.php');
 //print_r($pdo->errorInfo());
 }
