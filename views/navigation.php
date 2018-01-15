@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#"><?php echo $config['title']; ?></a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav float-left">
       <li class="nav-item">
         <a class="nav-link" href="./index.php">Home</a>
       </li><!-- /nav-item -->
@@ -11,7 +11,7 @@
       </li><!-- /nav-item -->
     </ul>
 
-    <ul class ="navbar-nav right">
+    <ul class ="navbar-nav float-right">
       <?php if (!isset($_SESSION['userId'])){ ?>
 
         <li class="nav-item">

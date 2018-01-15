@@ -13,8 +13,16 @@ $bio = $user['bio'];
 ?>
 <div class="profile-c">
 <ul>
-  <li><?php echo $name ?></li>
-  <li><?php echo $email ?></li>
-  <li><?php echo $bio ?></li>
+  <li>Username: <?php echo $name ?></li>
+  <li>Email: <?php echo $email ?></li>
+  <li>Biography: <?php echo $bio ?></li>
+</ul>
+<div class="profile-img">
+  <img src="" alt=""placeholder="">
+  <form action="app/user/updateProfile.php" method="post" enctype="multipart/form-data">
+           <label for="myImage">Choose a PNG image to upload</label>
+           <input type="file" name="myImage" accept=".png" required>
+           <button type="submit">Upload</button>
+</div>
 </div>
 <?php require __DIR__.'/views/footer.php'; ?>

@@ -12,6 +12,7 @@ $title = $_POST['title'];
 $content = $_POST['content'];
 $user = $_SESSION['userId'];
 
+
 $statement = $pdo->query("INSERT INTO 'posts'(title, content, userID) VALUES ('$title', '$content', '$user')");
 redirect('../../index.php');
 }

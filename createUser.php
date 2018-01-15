@@ -3,7 +3,7 @@
 
 <div class="container">
 
-        <form action="app/auth/createUser.php" method="post">
+        <form action="app/user/createUser.php" method="post">
           <h2 class="form-signin-heading">Please Register</h2>
           <div class="form-group">
               <label for="username">Username</label>

@@ -13,27 +13,29 @@
   $statement->execute();
 
   $user = $statement->fetch(PDO::FETCH_ASSOC);
+  echo "Welcome " .$user['name']. "!";
+  ?>
+  <h1>Post</h1>
+  <?php
 
-  echo "Welcome " .$user['name']. "!"
+  $posts = $pdo->prepare('SELECT * FROM posts');
+  $posts -> execute();
+
+  $allPosts= $posts ->fetchAll(PDO::FETCH_ASSOC);
+
+  foreach ($allPosts as $post) {
 
   ?>
-  <article>
-    <h1>Post</h1>
 
-    <form action="app/posts/store.php" method="post">
-      <div class="form-group">
-        <label for="title">Title</label>
-        <input class="form-control" type="text" name="title" placeholder="Title" required>
-      </div><!-- /form-group -->
+    <div class="card">
+  <h3>  <?php echo $post['title']; ?></h3>
+  <p><?php echo $post['content']; ?> </p>
+  <p><?php echo $post['post_date']; ?> </p>
 
-      <div class="form-group">
-        <label for="content">Text</label>
-        <input class="form-control" type="text" name="content" required>
-      </div><!-- /form-group -->
+</div>
+<?php } ?>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </article>
+
 <?php }else {
   echo "Please log in first to see this page.";
 } ?>
