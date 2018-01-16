@@ -11,7 +11,7 @@
       </li><!-- /nav-item -->
     </ul>
 
-    <ul class ="navbar-nav float-right">
+    <ul class ="navbar-nav ml-auto justify-content-end">
       <?php if (!isset($_SESSION['userId'])){ ?>
 
         <li class="nav-item">
@@ -31,18 +31,8 @@
         <li class="nav-item">
           <a class="nav-link" href="./profile.php">Profile</a>
         </li>
-        <!--
-        <div class="dropdown">
-          <button class="dropbtn" onclick="dropDown()">
-            <?php echo $_SESSION['userId'] ?>
-          </button>
-          <div class="dropdown-content" id="myDropdown">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-          </div>
-        </div>-->
+
       <?php } ?>
     </ul>
   </div>
-</nav><!-- /navbar -->
+</nav>
