@@ -13,6 +13,6 @@ $content = $_POST['content'];
 $user = $_SESSION['userId'];
 
 
-$statement = $pdo->query("INSERT INTO 'posts'(title, content, userID) VALUES ('$title', '$content', '$user')");
+$statement = $pdo->query("INSERT INTO 'posts'(title, content, userID, post_date) VALUES ('$title', '$content', '$user', datetime())");
 redirect('../../index.php');
 }
