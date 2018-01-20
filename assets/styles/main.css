@@ -1,8 +1,23 @@
 /* In this file you can add your custom styles. */
-
+.posts
+{
+  margin-top:10vh;
+  width:600px;
+}
 .card li
 {
   list-style-type: none;
   margin:10px;
   margin-top:50px;
+}
+.profile
+{
+  float:left;
+  width: 400px;
+  height:600px;
+}
+.profile-picture
+{
+  width: 400px;
+  height:400px;
 }

@@ -2,21 +2,27 @@
 
 require __DIR__.'/../autoload.php';
 
-$statement = $pdo->prepare('SELECT name FROM user WHERE userId = :name');
-$statement ->bindParam(':name', $_SESSION['userId']);
+$statement = $pdo->prepare('SELECT name FROM user WHERE userId = :id');
+$statement ->bindParam(':id', $_SESSION['userId']);
 
 $statement->execute();
 
 $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-mkdir(''$user['name']);
-
 if (isset($_FILES['myImage'])) {
-  mkdir($_SESSION['name'])
-    $image = $_FILES['myImage'];
-    $destination = sprintf('%s/%s-%s', __DIR__, date('ymd'), $image['name']);
-    move_uploaded_file($image['tmp_name'], $destination);
-}
 
-    redirect('user/../profile.php');
+  $imageName = $user['name'].".image.jpg";
+  $image = $_FILES['myImage'];
+
+  if(move_uploaded_file($image['tmp_name'],'../../userImages/.'.$imageName))
+  {
+    $upload = $pdo->prepare("UPDATE user SET profile_image= :picture WHERE userId =:name");
+    $upload->bindParam(':picture', $imageName);
+    $upload->bindParam(':name', $_SESSION['userId']);
+
+    $upload->execute();
+  }
+
+  redirect('../../profile.php');
+
 }

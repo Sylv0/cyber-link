@@ -27,7 +27,7 @@
 
   ?>
 
-    <div class="card">
+    <div class="card posts">
   <h3>  <?php echo $post['title']; ?></h3>
   <p><?php echo $post['content']; ?> </p>
   <p><?php echo $post['post_date']; ?> </p>
