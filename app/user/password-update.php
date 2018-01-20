@@ -17,6 +17,6 @@ if(isset($_POST['Oldpassword'])&& isset($_POST['Newpassword']) && isset($_POST['
   $setPassword ->bindParam(':password', $password);
   $setPassword ->execute();
 
-  redirect('user/../profile.php');
+redirect('../../profile.php');
 
 }

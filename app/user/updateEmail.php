@@ -12,5 +12,5 @@ $setEmail ->bindParam(':id', $_SESSION['userId']);
 $setEmail ->bindParam(':email', $email);
 $setEmail ->execute();
 
-redirect('user/../profile.php');
+redirect('../../profile.php');
 }

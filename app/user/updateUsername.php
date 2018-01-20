@@ -13,6 +13,6 @@ $updateUser ->bindParam(':id', $_SESSION['userId']);
 $updateUser ->bindParam(':username', $username);
 
 $updateUser->execute();
-redirect('user/../profile.php');
+redirect('../../profile.php');
 //print_r($pdo->errorInfo());
 }
