@@ -11,10 +11,11 @@ $user = $statement->fetch(PDO::FETCH_ASSOC);
 
 if (isset($_FILES['myImage'])) {
 
-  $imageName = $user['name'].".image.jpg";
+  $imageName = 'userImages/'.$user['name'].".image.jpg";
   $image = $_FILES['myImage'];
 
-  if(move_uploaded_file($image['tmp_name'],'../../userImages/.'.$imageName))
+  
+  if(move_uploaded_file($image['tmp_name'],'../../'.$imageName))
   {
     $upload = $pdo->prepare("UPDATE user SET profile_image= :picture WHERE userId =:name");
     $upload->bindParam(':picture', $imageName);
