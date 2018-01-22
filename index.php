@@ -15,25 +15,48 @@
   $user = $statement->fetch(PDO::FETCH_ASSOC);
   echo "Welcome " .$user['name']. "!";
   ?>
-  <h1>Post</h1>
+
+  <article>
+    <h1>Post</h1>
+
+    <form action="app/posts/store.php" method="post">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" type="text" name="title" placeholder="Title" required>
+      </div><!-- /form-group -->
+
+      <div class="form-group">
+        <label for="content">Link</label>
+        <input class="form-control" type="text" name="link" required>
+      </div><!-- /form-group -->
+
+      <div class="form-group">
+        <label for="content">Text</label>
+        <input class="form-control" type="text" name="content" required>
+      </div><!-- /form-group -->
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </article>
   <?php
 
-  $posts = $pdo->prepare('SELECT * FROM posts');
+  $posts = $pdo->prepare('SELECT * FROM posts ORDER BY post_date DESC');
   $posts -> execute();
 
   $allPosts= $posts ->fetchAll(PDO::FETCH_ASSOC);
 
   foreach ($allPosts as $post) {
 
-  ?>
+    ?>
 
     <div class="card posts">
-  <h3>  <?php echo $post['title']; ?></h3>
-  <p><?php echo $post['content']; ?> </p>
-  <p><?php echo $post['post_date']; ?> </p>
+      <h3>  <?php echo $post['title']; ?></h3>
+      <a href="<?php echo $post['link']?>"><?php echo $post['link']?></a>
+      <p><?php echo $post['content']; ?> </p>
+      <p><?php echo $post['post_date']; ?> </p>
 
-</div>
-<?php } ?>
+    </div>
+  <?php } ?>
 
 
 <?php }else {

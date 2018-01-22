@@ -18,5 +18,5 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
 
   $statement->execute();
 
-  redirect('../../profile.php');
+  redirect('../../login.php');
 }

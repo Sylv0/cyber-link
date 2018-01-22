@@ -30,6 +30,10 @@
         <li class="nav-item">
           <a class="nav-link" href="app/auth/logout.php">Log out</a>
         </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="./createPost.php">Create Posts</a>
+        </li>
 
         <li class="nav-item">
           <a class="nav-link" href="./profile.php">Profile</a>
