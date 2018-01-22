@@ -5,6 +5,10 @@
         <label for="title">Title</label>
         <input class="form-control" type="text" name="title" placeholder="Title" required>
       </div>
+      <div class="form-group">
+        <label for="content">Link</label>
+        <input class="form-control" type="text" name="link" required>
+      </div><!-- /form-group -->
 
       <div class="form-group">
         <label for="content">Text</label>
