@@ -7,7 +7,7 @@
       </div>
       <div class="form-group">
         <label for="content">Link</label>
-        <input class="form-control" type="text" name="link" required>
+        <input class="form-control" type="url" name="link" required>
       </div><!-- /form-group -->
 
       <div class="form-group">

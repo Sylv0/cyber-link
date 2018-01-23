@@ -1,9 +1,8 @@
 <?php require __DIR__.'/views/header.php';
 
-$id =$_POST['postID'];
-echo $id;
-$statement = $pdo->prepare('SELECT * FROM posts WHERE userId = :name');
-$statement ->bindParam(':name', $_SESSION['userId']);
+$id =$_GET['postid'];
+$statement = $pdo->prepare('SELECT * FROM posts WHERE postid = :id');
+$statement ->bindParam(':id', $id);
 
 $statement->execute();
 
@@ -15,12 +14,16 @@ $user = $statement->fetch(PDO::FETCH_ASSOC);?>
       <label for="title">Edit Title</label>
       <input class="form-control" type="text" name="title" placeholder="Title" required>
     </div>
+    <div class="form-group">
+      <label for="content">Edit Link</label>
+      <input class="form-control" type="text" name="link" required>
+    </div>
 
     <div class="form-group">
       <label for="content">Edit content</label>
       <input class="form-control" type="text" name="content" required>
     </div>
-    <input type="hidden" name="postId" value="<?php echo $user['postID']?>">
+    <input type="hidden" name="postid" value="<?php echo $user['postid']?>">
 
     <button type="submit" class="btn btn-primary">Submit</button>
 

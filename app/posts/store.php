@@ -9,7 +9,7 @@ require __DIR__.'/../autoload.php';
 if(isset($_POST['title'], $_POST['content'], $_POST['link']))
 {
 $title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
-$link = filter_var($_POST['link'], FILTER_SANITIZE_STRING);
+$link = filter_var($_POST['link'], FILTER_SANITIZE_URL);
 $content = filter_var($_POST['content'], FILTER_SANITIZE_STRING);
 $user = $_SESSION['userId'];
 

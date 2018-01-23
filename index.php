@@ -17,7 +17,7 @@
   ?>
 
   <article>
-    <h1>Post</h1>
+    <h1>Create a post</h1>
 
     <form action="app/posts/store.php" method="post">
       <div class="form-group">
@@ -27,7 +27,7 @@
 
       <div class="form-group">
         <label for="content">Link</label>
-        <input class="form-control" type="text" name="link" required>
+        <input class="form-control" type="url" name="link" value="https://"required>
       </div><!-- /form-group -->
 
       <div class="form-group">
@@ -45,8 +45,16 @@
 
   $allPosts= $posts ->fetchAll(PDO::FETCH_ASSOC);
 
-  foreach ($allPosts as $post) {
+  $votes = $pdo->prepare('SELECT * FROM votes WHERE postID = :postid');
+  $votes ->bindParam(':postid', $allPosts['postid']);
+  $votes -> execute();
 
+  $allVotes = $votes->fetchAll(PDO::FETCH_ASSOC);
+?>
+<h1> Posts: </h1>
+<?php
+
+  foreach ($allPosts as $post) {
     ?>
 
     <div class="card posts">
@@ -54,13 +62,23 @@
       <a href="<?php echo $post['link']?>"><?php echo $post['link']?></a>
       <p><?php echo $post['content']; ?> </p>
       <p><?php echo $post['post_date']; ?> </p>
+      <form action="app/posts/votes.php" method="post">
+        <div class="btn-group btn-group-sm">
+          <input type="submit" name="upvote" value ="upvote">
+          <input type="submit" name="downvote" value ="downvote">
+          <input type="hidden" name="postid" value="<?php echo $post['postid']?>">
+          <input type="hidden" name="userid" value="<?php echo $post['userID']?>">
+        </div>
+      </form>
 
+      <!--<a class="btn btn-primary" href="?postid=<?php echo $post['postid']?>vote_up=<?php ?> role="button">Up vote</a>
+      <a class="btn btn-danger" href="?postid=<?php echo $post['postid']?>" role="button">Down vote</a>-->
     </div>
-  <?php } ?>
+   <?php }
 
 
-<?php }else {
+ }else {
   echo "Please log in first to see this page.";
-} ?>
+}
 
-<?php require __DIR__.'/views/footer.php'; ?>
+ require __DIR__.'/views/footer.php'; ?>

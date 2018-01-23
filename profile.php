@@ -36,8 +36,8 @@ foreach ($userPosts as $post){ ?>
   <h3>  <?php echo $post['title']; ?></h3>
   <p><?php echo $post['content']; ?> </p>
   <p><?php echo $post['post_date']; ?> </p>
-  <a class="btn btn-primary" href="./editPost.php" role="button" value="<?php echo $user['postID'] ?>">Edit post</a>
-  <a class="btn btn-danger" href="#" role="button">Delete post</a>
+  <a class="btn btn-primary" href="./editPost.php?postid=<?php echo $post['postid']?>" role="button">Edit post</a>
+  <a class="btn btn-danger" href="app/posts/delete.php?postid=<?php echo $post['postid']?>" role="button">Delete post</a>
 
 </div>
 <?php
