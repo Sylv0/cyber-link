@@ -10,32 +10,18 @@ $post =$_POST['postid'];
 
 if(isset($_POST['downvote']))
 {
---$votes;
+$votes = -1;
 }
 if(isset($_POST['upvote']))
 {
-++$votes;
+$votes = 1;
 }
 
-
-$addVote = $pdo->prepare("INSERT INTO 'votes'(postID, userID, vote_count) VALUES ($post,$user,$vote)");
+$addVote = $pdo->prepare("INSERT INTO 'votes'(postID, userID, vote_count) VALUES (:postID,:userID,:votes)");
 $addVote->bindParam(':votes', $votes);
 $addVote->bindParam(':userID', $user);
 $addVote->bindParam('postID', $post);
 
 $addVote->execute();
 
-
-
-
-  /*$addvotes = $pdo->prepare('UPDATE votes SET vote_count= vote_count +1, userID = :userID WHERE postID = :postID');
-  $addvotes->bindParam(':votes', $votes);
-  $addvotes->bindParam(':userID', $user);
-  $addvotes->bindParam('postID', $post);
-
-  $addvotes->execute();*/
-
-
-
-
-//redirect('../../index.php');
+redirect('../../index.php');

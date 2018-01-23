@@ -13,8 +13,12 @@
   $statement->execute();
 
   $user = $statement->fetch(PDO::FETCH_ASSOC);
-  echo "Welcome " .$user['name']. "!";
   ?>
+
+  <div class="alert alert-success">
+  <strong>Welcome <?php $user['name'];?>!</strong> You can now view and create posts!
+</div>
+
 
   <article>
     <h1>Create a post</h1>
@@ -40,21 +44,33 @@
   </article>
   <?php
 
-  $posts = $pdo->prepare('SELECT * FROM posts ORDER BY post_date DESC');
-  $posts -> execute();
+  $Getposts = $pdo->prepare('SELECT * FROM posts ORDER BY post_date DESC');
+  $Getposts -> execute();
 
-  $allPosts= $posts ->fetchAll(PDO::FETCH_ASSOC);
+  $Posts= $Getposts ->fetchAll(PDO::FETCH_ASSOC);
 
-  $votes = $pdo->prepare('SELECT * FROM votes WHERE postID = :postid');
-  $votes ->bindParam(':postid', $allPosts['postid']);
-  $votes -> execute();
+  $Getvotes = $pdo->prepare('SELECT * FROM votes WHERE postID = :postid');
+  $Getvotes ->bindParam(':postid', $allPosts['postid']);
+  $Getvotes -> execute();
 
-  $allVotes = $votes->fetchAll(PDO::FETCH_ASSOC);
+  $Votes = $Getvotes->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <h1> Posts: </h1>
 <?php
-
-  foreach ($allPosts as $post) {
+$totalVote = 0;
+foreach($Votes as $vote)
+{
+	if($vote['vote_count']==1)
+	{
+		$totalVote = +1;
+	}
+	if($vote['vote_count']==-1)
+	{
+		$totalVote = -1;
+	}
+}
+  foreach ($Posts as $post) {
     ?>
 
     <div class="card posts">
@@ -64,8 +80,9 @@
       <p><?php echo $post['post_date']; ?> </p>
       <form action="app/posts/votes.php" method="post">
         <div class="btn-group btn-group-sm">
-          <input type="submit" name="upvote" value ="upvote">
-          <input type="submit" name="downvote" value ="downvote">
+          <button type="submit" name="upvote" class="btn btn-primary">Upvote </button>
+					<p><?php echo $totalVote ?></p>
+          <button type="submit" name="downvote"class="btn btn-danger">Downvote </button>
           <input type="hidden" name="postid" value="<?php echo $post['postid']?>">
           <input type="hidden" name="userid" value="<?php echo $post['userID']?>">
         </div>

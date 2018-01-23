@@ -13,15 +13,20 @@
 {
   float:left;
   width: 400px;
-  height:600px;
-}
-.profile-picture
-{
-
-  overflow:hidden;
+  margin-right:50px;
 }
 .picture
 {
   max-width: 600px;
   max-height:400px;
+}
+.edit
+{
+  width:100px;
+  display:run-in;
+}
+.delete
+{
+  width:105px;
+  display:run-in;
 }
