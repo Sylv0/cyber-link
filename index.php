@@ -67,7 +67,7 @@
         </div>
       </form>
 			<?php $votes = getVotes($pdo,$post['postid']); ?>
-			<p><?php var_dump($votes["vote_count"]);?></p>
+			<p><?php echo ($votes['votes']);?></p>
     </div>
    <?php }
 
