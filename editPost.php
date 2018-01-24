@@ -1,5 +1,7 @@
 <?php require __DIR__.'/views/header.php';
 
+if (isset($_SESSION['userId'])) {
+
 $id =$_GET['postid'];
 $statement = $pdo->prepare('SELECT * FROM posts WHERE postid = :id');
 $statement ->bindParam(':id', $id);
@@ -29,4 +31,10 @@ $user = $statement->fetch(PDO::FETCH_ASSOC);?>
 
   </form>
 </article>
-<?php require __DIR__.'/views/footer.php'; ?>
+
+<?php }
+else {
+	echo "Please log in first to see this page."; ?>
+  <a class="btn" href="./login.php">Login</a>
+<?php }
+ require __DIR__.'/views/footer.php'; ?>

@@ -1,4 +1,8 @@
-<?php require __DIR__.'/views/header.php'; ?>
+<?php require __DIR__.'/views/header.php';
+
+if (isset($_SESSION['userId'])) {
+	 ?>
+
 <article>
     <form action="app/posts/store.php" method="post">
       <div class="form-group">
@@ -18,4 +22,9 @@
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </article>
-<?php require __DIR__.'/views/footer.php'; ?>
+<?php
+else {
+	echo "Please log in first to see this page."; ?>
+  <a class="btn" href="./login.php">Login</a>
+<?php }
+ require __DIR__.'/views/footer.php'; ?>

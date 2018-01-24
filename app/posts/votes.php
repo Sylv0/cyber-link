@@ -24,4 +24,10 @@ $addVote->bindParam('postID', $post);
 
 $addVote->execute();
 
+// $addSumVote = $pdo->prepare("UPDATE 'posts' SET vote_score = :total WHERE postid= :post");
+// $addSumVote ->bindParam(':postid', $post);
+// $addSumVote ->bindParam(':total', $total);
+// $addSumVote -> execute();
+
+
 redirect('../../index.php');

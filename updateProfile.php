@@ -1,6 +1,8 @@
 <?php
 require __DIR__.'/views/header.php';
 
+if (isset($_SESSION['userId'])) {
+
 $statement = $pdo->prepare('SELECT * FROM user WHERE userId = :name');
 $statement ->bindParam(':name', $_SESSION['userId']);
 
@@ -70,4 +72,10 @@ $pic = $user['profile_image'];
 </form>
 
 </div>
-<?php require __DIR__.'/views/footer.php'; ?>
+<?php
+}
+else {
+	echo "Please log in first to see this page."; ?>
+  <a class="btn" href="./login.php">Login</a>
+<?php }
+ require __DIR__.'/views/footer.php'; ?>

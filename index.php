@@ -44,32 +44,12 @@
   </article>
   <?php
 
-  $Getposts = $pdo->prepare('SELECT * FROM posts ORDER BY post_date DESC');
-  $Getposts -> execute();
-
-  $Posts= $Getposts ->fetchAll(PDO::FETCH_ASSOC);
-
-  $Getvotes = $pdo->prepare('SELECT * FROM votes WHERE postID = :postid');
-  $Getvotes ->bindParam(':postid', $allPosts['postid']);
-  $Getvotes -> execute();
-
-  $Votes = $Getvotes->fetchAll(PDO::FETCH_ASSOC);
+  $Posts= getPosts($pdo);
 
 ?>
 <h1> Posts: </h1>
 <?php
-$totalVote = 0;
-foreach($Votes as $vote)
-{
-	if($vote['vote_count']==1)
-	{
-		$totalVote = +1;
-	}
-	if($vote['vote_count']==-1)
-	{
-		$totalVote = -1;
-	}
-}
+
   foreach ($Posts as $post) {
     ?>
 
@@ -81,15 +61,13 @@ foreach($Votes as $vote)
       <form action="app/posts/votes.php" method="post">
         <div class="btn-group btn-group-sm">
           <button type="submit" name="upvote" class="btn btn-primary">Upvote </button>
-					<p><?php echo $totalVote ?></p>
           <button type="submit" name="downvote"class="btn btn-danger">Downvote </button>
           <input type="hidden" name="postid" value="<?php echo $post['postid']?>">
           <input type="hidden" name="userid" value="<?php echo $post['userID']?>">
         </div>
       </form>
-
-      <!--<a class="btn btn-primary" href="?postid=<?php echo $post['postid']?>vote_up=<?php ?> role="button">Up vote</a>
-      <a class="btn btn-danger" href="?postid=<?php echo $post['postid']?>" role="button">Down vote</a>-->
+			<?php $votes = getVotes($pdo,$post['postid']); ?>
+			<p><?php var_dump($votes);?></p>
     </div>
    <?php }
 
