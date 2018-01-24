@@ -26,14 +26,14 @@ function getPosts($pdo)
 }
 function getVotes($pdo,$postId)
 {
-	$Getvotes = $pdo->prepare("SELECT * FROM votes WHERE postID = :postid ");
+	$Getvotes = $pdo->prepare("SELECT SUM(vote_count) as votes FROM votes WHERE postID = :postid ");
 	$Getvotes ->bindParam(':postid', $postId);
 	if(!$Getvotes ->execute())
 	{
 		$pdo->errorInfo();
 	}
 
-	$Votes= $Getvotes->fetchAll(PDO::FETCH_ASSOC);
+	$Votes= $Getvotes->fetch(PDO::FETCH_ASSOC);
 
 	return $Votes;
 
